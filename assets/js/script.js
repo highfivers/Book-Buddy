@@ -1,1 +1,5 @@
-// TODO: remember to pseudo code!
+// variables
+
+// functions
+
+// event listeners
