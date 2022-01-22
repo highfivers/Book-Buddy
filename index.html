@@ -14,16 +14,106 @@
 
 <body>
     <!-- header -->
-    <h1>Book Finder</h1>
-    <!-- aside left -->
-    <p>Welcome to Book Finder! To begin, select a genre from the dropdown menu.</p>
-    <!-- genre dropdown -->
-    <!-- submit button -->
+    <header class="has-background-warning hero is-small has-text-centered is-info">
+        <div class="hero-body">
+            <h1 class="is-size-2 has-text-grey-darker title">
+                Book Finder
+            </h1>
+        </div>
+    </header>
 
-    <!-- results section -->
-    <!-- results filter: page number -->
+    <!-- section -->
+    <section class="container has-text-grey-darker mt-3 subtitle">
+        <p class="is-size-4 title">
+            Welcome to your next reading adventure!
+        </p>
+        <p class="subtitle">
+            Use this handy search engine to find your next book. To begin, select your desired genre from the dropdown menu, then filter your results
+            by page number
+        </p>
+    </section>
+
+    <!-- main -->
+    <main class="container">
+        <div class="is-ancestor tile">
+            <div class="is-4 is-parent is-vertical tile">
+                <!-- genre dropdown, left -->
+                <div class="box field has-addons is-child tile">
+                    <div class="control is-expanded">
+                        <div class="select is-fullwidth">
+                            <select name="genres">
+                                <option value="">Select Genre</option>
+                                <option value="fantasy">Fantasy</option>
+                                <option value="horror">Horror</option>
+                                <option value="nonfiction">Nonfiction</option>
+                                <option value="classic">Classic Literature</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control">
+                        <button type="submit" class="button is-primary">Go!</button>
+                    </div>
+                </div>
+
+                <!-- past searches, left -->
+                <div class="box field is-child is-grouped is-vertical tile">
+                    <p class="m-3 ">Click to reveal past searches, or to clear your search history</p>
+                    <p class="control m-3">
+                        <a class="button is-primary ">
+                            Past Searches
+                        </a>
+                    </p>
+                    <p class="m-3">
+                        <a class="button is-light">
+                            Clear Searches
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- results section, right -->
+            <!-- results filter: page number -->
+            <div class="box is-parent is-vertical tile">
+                <div class="field has-addons">
+                    <div class="control is-child tile">
+                        <div class="select ">
+                            <select name="genres">
+                                <option>Filter Results</option>
+                                <option>under 100 pages</option>
+                                <option>200 pages </option>
+                                <option>300 pages</option>
+                                <option>400 pages</option>
+                                <option>500 pages</option>
+                                <option>over 500 pages</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- display results -->
+                <div class="is-child tile">
+                    <h3 class="subtitle">Your Search Results Here:</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper diam at erat pulvinar, at pulvinar felis blandit.
+                        Vestibulum volutpat tellus diam, consequat gravida libero rhoncus ut. Morbi maximus, leo sit amet vehicula eleifend,
+                        nuncdui porta orci, quis semper odio felis ut quam.
+                    </p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper diam at erat pulvinar, at pulvinar felis blandit.
+                        Vestibulum volutpat tellus diam, consequat gravida libero rhoncus ut. Morbi maximus, leo sit amet vehicula eleifend, nunc
+                        dui porta orci, quis semper odio felis ut quam
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </main>
 
     <!-- footer -->
+    <footer class="footer has-background-warning-light mt-6">
+        <div class="content has-text-centered">
+            <p class="has-text-grey-darker">
+                <strong>Book Finder</strong> made with ❤️ by Brett Gould, Heather Stevens, and Sarah Williams
+            </p>
+        </div>
+    </footer>
 
     <script src="./assets/js/script.js"></script>
 </body>
