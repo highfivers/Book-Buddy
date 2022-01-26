@@ -1,9 +1,10 @@
 // variables
 let resultsDiv = document.getElementById("results");
 let bookResults = [];
+// need a variable for tracking index of page 0-4 or something like that
 // functions
-//call Open Library with the genre and get that cream filling
 
+//call Open Library with the genre and get that cream filling
 function handleResults(event) {
   event.preventDefault();
   //grab genre from dropdown
@@ -24,20 +25,36 @@ function handleResults(event) {
 }
 
 //display results
-
+// rerun this function based on the page index every time it changes
 function displayResults(results) {
+  // clear results section
   resultsDiv.innerHTML = "";
-
+  // loop throgh results
   results.forEach((result) => {
     console.log(result.title);
+
+    // create cards for each result
+    const cardDiv = document.createElement("div");
+
+    // style card
+    cardDiv.classList.add("card", "p-3", "m-3");
+
+    //  display categories in result card. If category is unavailable display error message
     const firstSentence = result.hasOwnProperty("first_sentence") ? result.first_sentence[0] : "First sentence not available";
     const pageNumbers = result.hasOwnProperty("number_of_pages_median") ? result.number_of_pages_median : "Page numbers not available";
-    resultsDiv.innerHTML += `<div class="has-text-link is-size-3 has-text-weight-bold">${result.title}</div> <div>${firstSentence}</div> <div>Number of Pages: ${pageNumbers}</div>`;
+    cardDiv.innerHTML += `<div class="has-text-primary-dark is-size-4 has-text-weight-bold">${result.title}</div> <div><strong>First Sentence Teaser:</strong> ${firstSentence}</div> <div><strong>Number of Pages:</strong> ${pageNumbers}</div>`;
+
+    // append card to results display section
+    document.getElementById("results").appendChild(cardDiv);
   });
+  // stack search dropdown and results display vertically
+  document.getElementById("genreBox").className = "is-vertical";
+  document.getElementById("genreSearches").classList.remove("is-vertical");
+  document.getElementById("searchHistory").classList.remove("is-grouped");
+  // document.getElementById("genreSearches").className = "is-5";
 }
 
 //filter results based on page number
-
 function handleFilter() {
   const value = this.selectedOptions[0].getAttribute("data-value");
   const compare = this.selectedOptions[0].getAttribute("data-compare");
@@ -54,9 +71,9 @@ function handleFilter() {
     });
   }
   console.log(filterResults);
+  //call display results function
   displayResults(filterResults);
 }
-//call display results function
 
 // event listeners
 //submit for genre

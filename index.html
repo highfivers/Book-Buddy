@@ -36,18 +36,24 @@
 
     <!-- main -->
     <main class="container">
-        <div class="is-ancestor tile">
-            <div class="is-4 is-parent is-vertical tile">
+        <div id="genreBox" class="is-ancestor  tile">
+            <div id="genreSearches" class="is-4 is-parent is-vertical tile">
                 <!-- genre dropdown, left -->
                 <div class="box field has-addons is-child tile">
                     <div class="control is-expanded">
                         <div class="select is-fullwidth">
-                            <select name="genres" id="genres">
+                            <select name="genres" id="genres" class="is-hovered">
                                 <option value="" disabled selected>Select Genre</option>
+                                <option value="biography">Biography</option>
+                                <option value="childrens-literature">Children's Literature</option>
+                                <option value="classic-literature">Classic Literature</option>
                                 <option value="fantasy">Fantasy</option>
+                                <option value="historical-fiction">Historical Fiction</option>
                                 <option value="horror">Horror</option>
-                                <option value="nonfiction">Nonfiction</option>
-                                <option value="classic">Classic Literature</option>
+                                <option value="mystery">Mystery</option>
+                                <option value="poetry">Poetry</option>
+                                <option value="science-fiction">Science Fiction</option>
+
                             </select>
                         </div>
                     </div>
@@ -57,26 +63,32 @@
                 </div>
 
                 <!-- past searches, left -->
-                <div class="box field is-child is-grouped is-vertical tile">
-                    <p class="m-3 ">Click to reveal past searches, or to clear your search history</p>
-                    <p class="control m-3">
-                        <a class="button is-primary ">
-                            Past Searches
-                        </a>
-                    </p>
-                    <p class="m-3">
-                        <a class="button is-light">
-                            Clear Searches
-                        </a>
-                    </p>
+                <div id="searchHistory" class="box field is-child  level m-4 tile">
+                    <div class="is-grouped level-item">
+                        <p class="control m-3">
+                            <a class="button is-primary ">
+                                Favorite Searches
+                            </a>
+                        </p>
+                        <p class="m-3">
+                            <a class="button is-light">
+                                Clear History
+                            </a>
+                        </p>
+                    </div>
+                    <p class="level-item">search 1</p>
+                    <p class="level-item">search 2</p>
+                    <p class="level-item">search 3</p>
+
                 </div>
             </div>
+
 
             <!-- results section, right -->
             <!-- results filter: page number -->
             <div class="box is-parent is-vertical tile">
-                <div class="field has-addons">
-                    <div class="control is-child tile">
+                <div class="is-child field has-addons tile ">
+                    <div class="control ">
                         <div class="select">
                             <select name="genres" id="filter">
                                 <option disabled selected>Filter Results</option>
@@ -94,6 +106,7 @@
                 <div class="is-child tile">
                     <h3 class="subtitle">Your Search Results Here:</h3>
                     <div id="results"></div>
+                    <div id="pages"></div>
                 </div>
             </div>
 
