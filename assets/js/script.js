@@ -43,9 +43,15 @@ function displayResults(results) {
     const coverArt = result.hasOwnProperty("cover_i") ? result.cover_i : "No image avaiable";
     //create button link to amazon purchase page
     const amazonId = result.hasOwnProperty("id_amazon") ? result.id_amazon[0] : "Book is currently unavailable on Amazon";
-    let linkToBuy = `​​https://www.amazon.com/s?k=${amazonId}`;
-    cardDiv.innerHTML += `<img src="https://covers.openlibrary.org/b/id/${coverArt}-M.jpg"> <div class="has-text-primary-dark is-size-4 has-text-weight-bold">${result.title}</div> <div><strong>First Sentence Teaser:</strong> ${firstSentence}</div> <div><strong>Number of Pages:</strong> ${pageNumbers}</div> <a href="${linkToBuy}" target="_blank" id="amazonLink" class="button is-warning"> Buy Now!</a>`;
+    cardDiv.innerHTML += `<img src="https://covers.openlibrary.org/b/id/${coverArt}-M.jpg"> <div class="has-text-primary-dark is-size-4 has-text-weight-bold">${result.title}</div> <div><strong>First Sentence Teaser:</strong> ${firstSentence}</div> <div><strong>Number of Pages:</strong> ${pageNumbers}</div>`;
 
+    let amazonLink = document.createElement("a");
+    //generate amazon link to purchase
+    amazonLink.href = "https://www.amazon.com/s?k=" + amazonId;
+    amazonLink.innerHTML = "Buy Now!";
+    amazonLink.className = "button is-warning";
+    console.log(amazonLink);
+    cardDiv.appendChild(amazonLink);
     // append card to results display section
     document.getElementById("results").appendChild(cardDiv);
   });
