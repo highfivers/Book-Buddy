@@ -32,7 +32,11 @@ function displayResults(results) {
     console.log(result.title);
     const firstSentence = result.hasOwnProperty("first_sentence") ? result.first_sentence[0] : "First sentence not available";
     const pageNumbers = result.hasOwnProperty("number_of_pages_median") ? result.number_of_pages_median : "Page numbers not available";
-    resultsDiv.innerHTML += `<div class="has-text-link is-size-3 has-text-weight-bold">${result.title}</div> <div>${firstSentence}</div> <div>Number of Pages: ${pageNumbers}</div>`;
+    const coverArt = result.hasOwnProperty("cover_i") ? result.cover_i : "No image avaiable";
+    //create button link to amazon purchase page
+    const amazonId = result.hasOwnProperty("id_amazon") ? result.id_amazon[0] : "Book is currently unavailable on Amazon";
+    let linkToBuy = `​​https://www.amazon.com/s?k=${amazonId}`;
+    resultsDiv.innerHTML += `<img src="https://covers.openlibrary.org/b/id/${coverArt}-M.jpg"> <div class="has-text-link is-size-3 has-text-weight-bold">${result.title}</div> <div>${firstSentence}</div> <div>Number of Pages: ${pageNumbers}</div> <a href="${linkToBuy}" target="_blank" id="amazonLink" class="button is-warning"> Buy Now!</a>`;
   });
 }
 
