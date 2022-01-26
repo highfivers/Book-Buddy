@@ -30,12 +30,37 @@ function displayResults(results) {
 
   results.forEach((result) => {
     console.log(result.title);
+
+    //create cards for each result
+    const cardDiv = document.createElement("div");
+
+    //style card
+    cardDiv.classList.add("card", "p-3", "m-3");
+
+    // display categories in result card. If category is unavabile diplay error message
     const firstSentence = result.hasOwnProperty("first_sentence") ? result.first_sentence[0] : "First sentence not available";
     const pageNumbers = result.hasOwnProperty("number_of_pages_median") ? result.number_of_pages_median : "Page numbers not available";
-    resultsDiv.innerHTML += `<div class="has-text-link is-size-3 has-text-weight-bold">${result.title}</div> <div>${firstSentence}</div> <div>Number of Pages: ${pageNumbers}</div>`;
-  });
-}
+    const coverArt = result.hasOwnProperty("cover_i") ? result.cover_i : "No image avaiable";
+    //create button link to amazon purchase page
+    const amazonId = result.hasOwnProperty("id_amazon") ? result.id_amazon[0] : "Book is currently unavailable on Amazon";
+    cardDiv.innerHTML += `<img src="https://covers.openlibrary.org/b/id/${coverArt}-M.jpg"> <div class="has-text-primary-dark is-size-4 has-text-weight-bold">${result.title}</div> <div><strong>First Sentence Teaser:</strong> ${firstSentence}</div> <div><strong>Number of Pages:</strong> ${pageNumbers}</div>`;
 
+    let amazonLink = document.createElement("a");
+    //generate amazon link to purchase
+    amazonLink.href = "https://www.amazon.com/s?k=" + amazonId;
+    amazonLink.innerHTML = "Buy Now!";
+    amazonLink.className = "button is-warning";
+    console.log(amazonLink);
+    cardDiv.appendChild(amazonLink);
+    // append card to results display section
+    document.getElementById("results").appendChild(cardDiv);
+  });
+
+  // stack search dropdown and results display vertically
+  document.getElementById("genreBox").className = "is-vertical";
+  document.getElementById("genreSearches").classList.remove("is-vertical");
+  document.getElementById("searchHistory").classList.remove("is-grouped");
+}
 //filter results based on page number
 
 function handleFilter() {
