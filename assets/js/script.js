@@ -65,6 +65,7 @@ function pageResults() {
 
 //display results
 function displayResults(results) {
+  document.querySelector("#pageNumberFilter").classList.remove("is-hidden");
   resultsDiv.innerHTML = "";
 
   results.forEach((result) => {
