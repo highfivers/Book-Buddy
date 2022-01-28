@@ -1,14 +1,54 @@
 // variables
 let resultsDiv = document.getElementById("results");
 let bookResults = [];
+let currentPage = 0;
+let recordsPerPage = 10;
+let genres = "";
+let value = "";
+let compare = "";
+
 // functions
 //call Open Library with the genre and get that cream filling
-
 function handleResults(event) {
   event.preventDefault();
   //grab genre from dropdown
-  const genres = document.querySelector("#genres").value;
+  genres = document.querySelector("#genres").value;
   const fetchUrl = `http://openlibrary.org/search.json?subject=${genres}&limit=10`;
+
+  //fetching results
+  resultsDiv.innerHTML = "Loading Results";
+  fetch(fetchUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      // makes "next" button visible after search is complete
+      document.querySelector("#next").classList.remove("is-hidden");
+      // displays results
+      displayResults(data.docs);
+      bookResults = data.docs;
+    });
+}
+
+// handles page navigation
+function pageResults() {
+  const direction = this.getAttribute("data-type");
+  // click "previous" button to go back 10 items
+  if (direction === "previous") {
+    if (currentPage > 9) {
+      currentPage -= 10;
+    }
+    // hides "previous" button
+    if (currentPage === 0) {
+      document.querySelector("#previous").classList.add("is-hidden");
+    }
+    // makes "previous" button visible; shows next 10 items
+  } else {
+    document.querySelector("#previous").classList.remove("is-hidden");
+    currentPage += 10;
+  }
+
+  const fetchUrl = `http://openlibrary.org/search.json?subject=${genres}&limit=10&offset=${currentPage}`;
 
   //fetching results
   resultsDiv.innerHTML = "Loading Results";
@@ -20,11 +60,11 @@ function handleResults(event) {
       console.log(data);
       displayResults(data.docs);
       bookResults = data.docs;
+      handlePersistantFilter();
     });
 }
 
 //display results
-
 function displayResults(results) {
   resultsDiv.innerHTML = "";
 
@@ -58,14 +98,13 @@ function displayResults(results) {
 
   // stack search dropdown and results display vertically
   document.getElementById("genreBox").className = "is-vertical";
-  document.getElementById("genreSearches").classList.remove("is-vertical");
-  document.getElementById("searchHistory").classList.remove("is-grouped");
 }
-//filter results based on page number
 
+//filter results based on page number
 function handleFilter() {
-  const value = this.selectedOptions[0].getAttribute("data-value");
-  const compare = this.selectedOptions[0].getAttribute("data-compare");
+  console.log(this);
+  value = this.selectedOptions[0].getAttribute("data-value");
+  compare = this.selectedOptions[0].getAttribute("data-compare");
   let filterResults = [];
   //if the page number variable is less than selected number then displays books that fit that criteria
   if (compare === "under") {
@@ -78,15 +117,41 @@ function handleFilter() {
       return e.number_of_pages_median > value;
     });
   }
-  console.log(filterResults);
+  // console.log(filterResults);
   displayResults(filterResults);
 }
-//call display results function
 
-// event listeners
-//submit for genre
-//filter(s)
+// run selected filter across navigated pages
+function handlePersistantFilter() {
+  console.log(this);
+  let filterResults = [];
+
+  //if the page number variable is less than selected number then displays books that fit that criteria
+  if (compare === "under") {
+    filterResults = bookResults.filter(function (e) {
+      return e.number_of_pages_median < value;
+    });
+    //returns options that are greater than the value that is defined
+  } else {
+    filterResults = bookResults.filter(function (e) {
+      return e.number_of_pages_median > value;
+    });
+  }
+  // console.log(filterResults);
+  displayResults(filterResults);
+}
+
+// window.onload = function clearFilter() {
+//   init();
+//   handleFilter();
+// };
 
 //event listeners
+// submit genre
 document.querySelector("#genreBtn").addEventListener("click", handleResults);
+// filter results
 document.querySelector("#filter").addEventListener("change", handleFilter);
+
+// previous and next buttons
+document.querySelector("#next").addEventListener("click", pageResults);
+document.querySelector("#previous").addEventListener("click", pageResults);

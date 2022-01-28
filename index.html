@@ -17,7 +17,7 @@
     <header class="has-background-warning hero is-small has-text-centered is-info">
         <div class="hero-body">
             <h1 class="is-size-2 has-text-grey-darker title">
-                Book Finder
+                Book Buddy
             </h1>
         </div>
     </header>
@@ -63,7 +63,7 @@
                 </div>
 
                 <!-- past searches, left -->
-                <div id="searchHistory" class="box field is-child  level m-4 tile">
+                <!-- <div id="searchHistory" class="box field is-child  level m-4 tile">
                     <div class="is-grouped level-item">
                         <p class="control m-3">
                             <a class="button is-primary ">
@@ -79,8 +79,7 @@
                     <p class="level-item">search 1</p>
                     <p class="level-item">search 2</p>
                     <p class="level-item">search 3</p>
-
-                </div>
+                </div> -->
             </div>
 
 
@@ -90,7 +89,7 @@
                 <div class="is-child field has-addons tile ">
                     <div class="control ">
                         <div class="select">
-                            <select name="genres" id="filter">
+                            <select name="filter" id="filter">
                                 <option disabled selected>Filter Results</option>
                                 <option data-value="100" data-compare="under">under 100 pages</option>
                                 <option data-value="200" data-compare="under">under 200 pages </option>
@@ -104,9 +103,27 @@
                 </div>
                 <!-- display results -->
                 <div class="is-child tile">
-                    <h3 class="subtitle">Your Search Results Here:</h3>
+
+                    <!-- search results -->
+                    <h3 class="subtitle">Your Search Results:</h3>
                     <div id="results"></div>
                     <div id="pages"></div>
+                    <!-- pagination -->
+                    <nav class="is-rounded pagination" role="navigation" aria-label="pagination">
+                        <a id="previous" data-type="previous" class="pagination-previous is-hidden" title="This is the first page">Previous</a>
+                        <a id="next" data-type="next" class="pagination-next is-hidden">Next page</a>
+                        <!-- <ul class="pagination-list">
+                            <li>
+                                <a class="pagination-link is-current" aria-label="Page 1" aria-current="page">1</a>
+                            </li>
+                            <li>
+                                <a class="pagination-link" aria-label="Goto page 2">2</a>
+                            </li>
+                            <li>
+                                <a class="pagination-link" aria-label="Goto page 3">3</a>
+                            </li>
+                        </ul> -->
+                    </nav>
                 </div>
             </div>
         </div>
