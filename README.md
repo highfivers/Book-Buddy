@@ -18,7 +18,7 @@ As a book lover, I want to go to my Book Buddy application, select a preferred b
 
 ## Screenshot
 
-![This image show the book finder web page with some example search results. The header is a pale yellow and the buttons on the page are blue.]
+![This image show the book finder web page with some example search results. The header is a pale yellow and the buttons on the page are blue. This screenshot is an example of a filtered page with search results loaded.](assets/bookbuddyscreenshot.png)
 
 ## Links to Application
 
