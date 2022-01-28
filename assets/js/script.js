@@ -13,7 +13,7 @@ function handleResults(event) {
   event.preventDefault();
   //grab genre from dropdown
   genres = document.querySelector("#genres").value;
-  const fetchUrl = `http://openlibrary.org/search.json?subject=${genres}&limit=10`;
+  const fetchUrl = `https://openlibrary.org/search.json?subject=${genres}&limit=10`;
 
   //fetching results
   resultsDiv.innerHTML = "Loading Results";
@@ -48,7 +48,7 @@ function pageResults() {
     currentPage += 10;
   }
 
-  const fetchUrl = `http://openlibrary.org/search.json?subject=${genres}&limit=10&offset=${currentPage}`;
+  const fetchUrl = `https://openlibrary.org/search.json?subject=${genres}&limit=10&offset=${currentPage}`;
 
   //fetching results
   resultsDiv.innerHTML = "Loading Results";
