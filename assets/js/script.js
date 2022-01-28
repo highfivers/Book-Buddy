@@ -57,7 +57,6 @@ function pageResults() {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
       displayResults(data.docs);
       bookResults = data.docs;
       handlePersistantFilter();
@@ -69,8 +68,6 @@ function displayResults(results) {
   resultsDiv.innerHTML = "";
 
   results.forEach((result) => {
-    console.log(result.title);
-
     //create cards for each result
     const cardDiv = document.createElement("div");
 
@@ -78,11 +75,19 @@ function displayResults(results) {
     cardDiv.classList.add("card", "p-3", "m-3");
 
     // display categories in result card. If category is unavabile diplay error message
-    const firstSentence = result.hasOwnProperty("first_sentence") ? result.first_sentence[0] : "First sentence not available";
-    const pageNumbers = result.hasOwnProperty("number_of_pages_median") ? result.number_of_pages_median : "Page numbers not available";
-    const coverArt = result.hasOwnProperty("cover_i") ? result.cover_i : "No image avaiable";
+    const firstSentence = result.hasOwnProperty("first_sentence")
+      ? result.first_sentence[0]
+      : "First sentence not available";
+    const pageNumbers = result.hasOwnProperty("number_of_pages_median")
+      ? result.number_of_pages_median
+      : "Page numbers not available";
+    const coverArt = result.hasOwnProperty("cover_i")
+      ? result.cover_i
+      : "No image avaiable";
     //create button link to amazon purchase page
-    const amazonId = result.hasOwnProperty("id_amazon") ? result.id_amazon[0] : "Book is currently unavailable on Amazon";
+    const amazonId = result.hasOwnProperty("id_amazon")
+      ? result.id_amazon[0]
+      : "Book is currently unavailable on Amazon";
     cardDiv.innerHTML += `<img src="https://covers.openlibrary.org/b/id/${coverArt}-M.jpg"> <div class="has-text-primary-dark is-size-4 has-text-weight-bold">${result.title}</div> <div><strong>First Sentence Teaser:</strong> ${firstSentence}</div> <div><strong>Number of Pages:</strong> ${pageNumbers}</div>`;
 
     let amazonLink = document.createElement("a");
@@ -90,7 +95,6 @@ function displayResults(results) {
     amazonLink.href = "https://www.amazon.com/s?k=" + amazonId;
     amazonLink.innerHTML = "Buy Now!";
     amazonLink.className = "button is-warning";
-    console.log(amazonLink);
     cardDiv.appendChild(amazonLink);
     // append card to results display section
     document.getElementById("results").appendChild(cardDiv);
@@ -102,7 +106,6 @@ function displayResults(results) {
 
 //filter results based on page number
 function handleFilter() {
-  console.log(this);
   value = this.selectedOptions[0].getAttribute("data-value");
   compare = this.selectedOptions[0].getAttribute("data-compare");
   let filterResults = [];
@@ -117,13 +120,11 @@ function handleFilter() {
       return e.number_of_pages_median > value;
     });
   }
-  // console.log(filterResults);
   displayResults(filterResults);
 }
 
 // run selected filter across navigated pages
 function handlePersistantFilter() {
-  console.log(this);
   let filterResults = [];
 
   //if the page number variable is less than selected number then displays books that fit that criteria
@@ -137,14 +138,8 @@ function handlePersistantFilter() {
       return e.number_of_pages_median > value;
     });
   }
-  // console.log(filterResults);
   displayResults(filterResults);
 }
-
-// window.onload = function clearFilter() {
-//   init();
-//   handleFilter();
-// };
 
 //event listeners
 // submit genre
