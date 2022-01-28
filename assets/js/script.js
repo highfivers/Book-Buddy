@@ -96,6 +96,7 @@ function displayResults(results) {
     amazonLink.href = "https://www.amazon.com/s?k=" + amazonId;
     amazonLink.innerHTML = "Buy Now!";
     amazonLink.className = "button is-warning";
+    amazonLink.target = "_blank";
     cardDiv.appendChild(amazonLink);
     // append card to results display section
     document.getElementById("results").appendChild(cardDiv);
