@@ -1,5 +1,7 @@
 # Project 1 - Book Finder
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## User Story
 
 When the user arrives on the Book Buddy application, they will see a header, brief introduction, and a dropdown menu of genres to select from. When the user selects a genre from the dropdown and clicks "Go!", a selection of books matching their selected genre will populate after a bit of loading time.
